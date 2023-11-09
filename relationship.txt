@@ -1,0 +1,15 @@
+one to one
+
+instructor --- instructor_detail
+
+========================
+one to many
+
+instructor --< course
+course --< review
+
+========================
+many to many
+
+course >-< student
+
