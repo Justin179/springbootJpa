@@ -30,9 +30,9 @@ public class SpringbootJpaApplication {
         return runner -> { // will be executed right after the service started
 
             // one to one
-//            createInstructor(appDAO);
-//
-            findInstructor(appDAO);
+//            findInstructor(appDAO);  // test written, tw hereafter
+
+//            createInstructor(appDAO); // tw
 //
 //            deleteInstructor(appDAO);
 //
@@ -78,6 +78,13 @@ public class SpringbootJpaApplication {
         };
     }
 
+    private void findInstructor(AppDAO appDAO) {
+        int id = 4;
+        Instructor instructor = appDAO.findInstructorById(id);
+        System.out.println(instructor);
+        System.out.println(instructor.getInstructorDetail());
+    }
+
     private void createInstructor(AppDAO appDAO) {
 //        Instructor instructor = new Instructor("Chad", "Darby", "darby@luv2code.com");
 //        InstructorDetail instructorDetail = new InstructorDetail("http://www.luv2code.com/youtube", "Luv 2 code!!!");
@@ -87,13 +94,6 @@ public class SpringbootJpaApplication {
         instructor.setInstructorDetail(instructorDetail);
 
         appDAO.save(instructor);
-    }
-
-    private void findInstructor(AppDAO appDAO) {
-        int id = 4;
-        Instructor instructor = appDAO.findInstructorById(id);
-        System.out.println(instructor);
-        System.out.println(instructor.getInstructorDetail());
     }
 
     private void deleteInstructor(AppDAO appDAO) {
@@ -116,7 +116,7 @@ public class SpringbootJpaApplication {
 
     private void createInstructorWithCourses(AppDAO appDAO) {
 
-        Instructor instructor = new Instructor("Susan", "Public", "susan.public@luv2code.com");
+        Instructor instructor = new Instructor("Susan", "Public", "susan.public@gmail.com");
         InstructorDetail instructorDetail = new InstructorDetail("http://www.youtube.com", "Video Games");
         instructor.setInstructorDetail(instructorDetail);
 

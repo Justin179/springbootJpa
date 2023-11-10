@@ -11,12 +11,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "instructor")
+@Table(name = "instructor",
+        uniqueConstraints = {@UniqueConstraint(name = "instructor_email_unique",columnNames = "email")})
 public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +38,7 @@ public class Instructor {
 
     @OneToMany(mappedBy = "instructor",
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}) // 不要cascade delete Course
     private List<Course> courses;
 
     public Instructor() {

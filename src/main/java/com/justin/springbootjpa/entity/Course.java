@@ -30,6 +30,7 @@ public class Course {
     @Column(name = "title")
     private String title;
 
+    // 不要cascade delete Instructor
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
