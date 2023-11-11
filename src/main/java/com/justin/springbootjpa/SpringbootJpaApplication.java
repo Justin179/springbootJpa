@@ -19,7 +19,6 @@ public class SpringbootJpaApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringbootJpaApplication.class, args);
     }
-
     /*
         1 每個單測都是獨立的，彼此不可以互相影響。
         2 單元測試的結果，不受外部服務影響，因為是在測試程式的邏輯有沒有被改壞。
