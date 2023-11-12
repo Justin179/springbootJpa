@@ -1,6 +1,7 @@
 package com.justin.springbootjpa.aop;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -15,15 +16,15 @@ public class MyDemoLoggingAspect {
 
     /*
         指定的目錄下的所有類別的所有方法 (目前沒這些目錄，不過語法基本就是下面那樣)
-
+    */
     private Logger logger = Logger.getLogger(getClass().getName());
 
     // setup pointcut declarations
-    @Pointcut("execution(* com.justin.springbootmall.controller.*.*(..))")
+    @Pointcut("execution(* com.justin.springbootjpa.thymeleafdemo.controller.*.*(..))")
     private void forControllerPackage(){}
-    @Pointcut("execution(* com.justin.springbootmall.rest.service.*.*(..))")
+    @Pointcut("execution(* com.justin.springbootjpa.thymeleafdemo.service.*.*(..))")
     private void forServicePackage(){}
-    @Pointcut("execution(* com.justin.springbootmall.rest.dao.*.*(..))")
+    @Pointcut("execution(* com.justin.springbootjpa.thymeleafdemo.dao.*.*(..))")
     private void forDaoPackage(){}
 
     @Pointcut("forControllerPackage() || forServicePackage() || forDaoPackage()")
@@ -32,9 +33,16 @@ public class MyDemoLoggingAspect {
     @Before("forAppFlow()")
     public void before(JoinPoint joinPoint){
         String shortString = joinPoint.getSignature().toShortString();
-        logger.info("========> in @Before: "+shortString);
+//        logger.info("★〞☆〞★〞☆〞★〞☆〞★〞☆〞★〞☆〞★〞☆〞========> in @Before: "+shortString);
+        System.out.println("★〞☆〞★〞☆〞★〞☆〞★〞☆〞★〞☆〞★〞☆〞========> in @Before: "+shortString);
     }
-    */
+    @AfterReturning("forAppFlow()")
+    public void afterReturning(JoinPoint joinPoint){
+        String shortString = joinPoint.getSignature().toShortString();
+//        logger.info("★〞☆〞★〞☆〞★〞☆〞★〞☆〞★〞☆〞★〞☆〞========> in @AfterReturning: "+shortString);
+        System.out.println("★〞☆〞★〞☆〞★〞☆〞★〞☆〞★〞☆〞★〞☆〞========> in @AfterReturning: "+shortString);
+    }
+
 
 
     @Around("execution(* com.justin.springbootjpa.aop.service.*.getFortune(..))")
