@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/employees")
-public class EmployeeController {
+public class EmployeeMvcController {
 
 	private EmployeeService employeeService;
 
-	public EmployeeController(EmployeeService theEmployeeService) {
+	public EmployeeMvcController(EmployeeService theEmployeeService) {
 		employeeService = theEmployeeService;
 	}
 
